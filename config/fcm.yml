@@ -1,0 +1,6 @@
+development:
+   fcm_key: 
+   sender_id: 
+production:
+   fcm_key: 
+   sender_id: 
