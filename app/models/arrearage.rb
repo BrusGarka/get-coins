@@ -1,0 +1,2 @@
+class Arrearage < ApplicationRecord
+end
