@@ -2,6 +2,8 @@ class CreateReceivers < ActiveRecord::Migration[5.0]
   def change
     create_table :receivers do |t|
 
+        t.references :user, foreing_key: true, null: false
+        t.integer :category, null: false, default: 0
         t.string :name, null: true
         t.string :document, null: true
         t.integer :bank_code, null: true
