@@ -8,7 +8,7 @@ class Api::V1::Authentication::PasswordsController < Api::V1::BaseController
   end
 
   def update
-    @user.update_with_password!(password_chage_params)
+    @current_resource.update_with_password!(password_chage_params)
   end
 
   private

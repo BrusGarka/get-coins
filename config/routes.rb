@@ -14,6 +14,18 @@ Rails.application.routes.draw do
           post 'sessions' => 'sessions#create'
           delete 'sessions' => 'sessions#destroy'
         end
+
+        resources :arrearages, except: [:new, :edit, :index] do
+          collection do
+            get :pending
+            get :paid
+          end
+        end
+
+        resources :installments, only: [:index, :update]
+        resources :monthly_incomes, only: [:index, :create, :update]
+        resources :receivers, except: [:new, :edit]
+        resources :users, only: [:show, :update]
       end
     end
 

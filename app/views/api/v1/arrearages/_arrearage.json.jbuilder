@@ -6,5 +6,5 @@ json.title arrearage.title
 json.description arrearage.description
 json.total_value arrearage.total_valu
 json.installment_number arrearage.installment_number
-json.payd arrearage.payd
+json.paid arrearage.paid
 json.pay_at arrearage.pay_at

@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.text     "description",                                                 null: false
     t.decimal  "total_value",        precision: 10, scale: 2, default: "1.0", null: false
     t.integer  "installment_number",                          default: 1,     null: false
+    t.boolean  "paid",                                        default: false, null: false
     t.datetime "pay_at",                                                      null: false
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
@@ -60,11 +61,13 @@ ActiveRecord::Schema.define(version: 20170404223345) do
   create_table "installments", force: :cascade do |t|
     t.integer  "arrearage_id",                                          null: false
     t.integer  "number",                                default: 1,     null: false
+    t.integer  "month",                                                 null: false
+    t.integer  "year",                                                  null: false
     t.string   "receipt"
-    t.boolean  "payd",                                  default: false, null: false
+    t.boolean  "paid",                                  default: false, null: false
     t.decimal  "value",        precision: 10, scale: 2, default: "0.0", null: false
     t.datetime "pay_at",                                                null: false
-    t.datetime "payd_at"
+    t.datetime "paid_at"
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.index ["arrearage_id"], name: "index_installments_on_arrearage_id", using: :btree
@@ -80,6 +83,8 @@ ActiveRecord::Schema.define(version: 20170404223345) do
   end
 
   create_table "receivers", force: :cascade do |t|
+    t.integer  "user_id",                null: false
+    t.integer  "category",   default: 0, null: false
     t.string   "name"
     t.string   "document"
     t.integer  "bank_code"
@@ -87,8 +92,9 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.integer  "agency_dv"
     t.integer  "account"
     t.integer  "account_dv"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["user_id"], name: "index_receivers_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

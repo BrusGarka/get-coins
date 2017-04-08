@@ -6,4 +6,10 @@ class MonthlyIncome < ApplicationRecord
 
   validates_presence_of  :value
 
+  def build_all_months(user, value)
+    (0..11).each do |i|
+      user.monthly_incomes.create!(month: i, value: value)
+    end
+  end
+
 end

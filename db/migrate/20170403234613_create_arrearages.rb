@@ -9,7 +9,7 @@ class CreateArrearages < ActiveRecord::Migration[5.0]
       t.text :description, null: false
       t.decimal :total_value,null: false,precision: 10, scale: 2, default: 1.0
       t.integer :installment_number, null: false, default: 1
-      t.boolean :payd, null:false, default: false
+      t.boolean :paid, null:false, default: false
       t.datetime :pay_at, null:false
       t.timestamps
     end
