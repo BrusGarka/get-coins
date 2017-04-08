@@ -1,0 +1,1 @@
+json.partial! 'api/v1/installments/installment', collection: @installments, as:  :installment

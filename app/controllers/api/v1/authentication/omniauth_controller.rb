@@ -12,7 +12,7 @@ class Api::V1::Authentication::OmniauthController < Api::V1::BaseController
   private
 
   def omniauth_params
-    params.permit(:oauth_access_token,:provider, :email)
+    params.permit(:oauth_access_token,:provider, :email, :picture)
   end
 
 end

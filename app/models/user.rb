@@ -10,6 +10,8 @@ class User < ApplicationRecord
     has_many :receivers
     has_many :monthly_incomes
 
+    delegate :build_all_months, to: :monthly_incomes
+
 
     def self.authentication_keys
       [:email]

@@ -1,0 +1,1 @@
+json.partial! 'api/v1/receiver/receiver', collection: @receivers, as: :receiver

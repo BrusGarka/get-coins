@@ -14,7 +14,7 @@ class Api::V1::Authentication::RegistrationsController < Api::V1::BaseController
   private
 
   def sign_up_params
-    params.permit(:email,:password)
+    params.permit(:email,:password,:picture)
   end
 
 end
