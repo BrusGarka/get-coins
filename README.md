@@ -1,9 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+  Read Doc to use the api https://www.getpostman.com/collections/1941a96e080dedc5b125
 
 * Ruby version
 
