@@ -1,0 +1,1 @@
+json.partial! 'arrearage', arrearage: @arrearage

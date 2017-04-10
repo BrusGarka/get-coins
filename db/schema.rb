@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.integer  "installment_number",                          default: 1,     null: false
     t.boolean  "paid",                                        default: false, null: false
     t.datetime "pay_at",                                                      null: false
+    t.datetime "deleted_at"
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
     t.index ["receiver_id"], name: "index_arrearages_on_receiver_id", using: :btree
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.decimal  "value",        precision: 10, scale: 2, default: "0.0", null: false
     t.datetime "pay_at",                                                null: false
     t.datetime "paid_at"
+    t.datetime "deleted_at"
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.index ["arrearage_id"], name: "index_installments_on_arrearage_id", using: :btree
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.integer  "user_id",                    null: false
     t.integer  "month",                      null: false
     t.decimal  "value",      default: "1.0", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_monthly_incomes_on_user_id", using: :btree
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.integer  "agency_dv"
     t.integer  "account"
     t.integer  "account_dv"
+    t.datetime "deleted_at"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["user_id"], name: "index_receivers_on_user_id", using: :btree
@@ -112,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.datetime "deleted_at"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end

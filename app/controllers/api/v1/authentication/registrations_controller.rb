@@ -8,13 +8,13 @@ class Api::V1::Authentication::RegistrationsController < Api::V1::BaseController
   end
 
   def destroy
-    @user.destroy!
+    @current_resource.destroy!
   end
 
   private
 
   def sign_up_params
-    params.permit(:email,:password,:picture)
+    params.permit(:email,:password,:picture, :full_name)
   end
 
 end

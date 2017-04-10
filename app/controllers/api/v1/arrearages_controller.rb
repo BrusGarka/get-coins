@@ -5,12 +5,13 @@ class Api::V1::ArrearagesController < Api::V1::BaseController
 
   def index
     params[:page] ||= 0
-
-    if params[:action] == :pending
-      @current_resource.arrearages.pending.page(params[:page])
+    if params[:action] == "pending"
+      @arrearages = @current_resource.arrearages.pending.page(params[:page])
     else
-      @current_resource.arrearages.paid.page(params[:page])
+      @arrearages = @current_resource.arrearages.paid.page(params[:page])
     end
+
+    render :index
 
   end
 
@@ -21,7 +22,7 @@ class Api::V1::ArrearagesController < Api::V1::BaseController
   end
 
   def create
-    @arrearage = @current_resource.arrearages.create!(arrearage_paramss)
+    @arrearage = @current_resource.arrearages.create!(arrearage_params)
   end
 
   def update
@@ -40,6 +41,10 @@ class Api::V1::ArrearagesController < Api::V1::BaseController
 
   def arrearage_params
     params.permit(:receiver_id, :payment_type, :category, :title, :description, :total_value, :installment_number, :pay_at)
+  end
+
+  def arrearage_update_params
+    params.permit(:total_value)
   end
 
 end

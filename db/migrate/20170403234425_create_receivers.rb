@@ -11,6 +11,7 @@ class CreateReceivers < ActiveRecord::Migration[5.0]
         t.integer :agency_dv, null: true
         t.integer :account,null: true
         t.integer :account_dv, null: true
+        t.datetime :deleted_at, null: true
 
       t.timestamps
     end

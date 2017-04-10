@@ -4,7 +4,9 @@ json.payment_type arrearage.payment_type
 json.category arrearage.category
 json.title arrearage.title
 json.description arrearage.description
-json.total_value arrearage.total_valu
+json.total_value arrearage.total_value
 json.installment_number arrearage.installment_number
 json.paid arrearage.paid
-json.pay_at arrearage.pay_at
+json.pay_at arrearage.pay_at.to_date
+json.paid_value arrearage.get_paid_value
+json.pending_value arrearage.get_pending_value

@@ -25,7 +25,12 @@ Rails.application.routes.draw do
         resources :installments, only: [:index, :update]
         resources :monthly_incomes, only: [:index, :create, :update]
         resources :receivers, except: [:new, :edit]
-        resources :users, only: [:show, :update]
+        resources :users do
+          collection do
+            get :show
+            patch :update
+          end
+        end
       end
     end
 

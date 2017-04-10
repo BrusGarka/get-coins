@@ -1,1 +1,1 @@
-json.message 'Uma mensagem com um novo acesso foi enviado para seu email!'
+json.message 'A message with new access has been sent to your email!'

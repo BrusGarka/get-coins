@@ -11,6 +11,11 @@ class Installment < ApplicationRecord
 
   mount_uploader :receipt, AvatarUploader
 
+  scope :pending, -> {where(paid: false)}
+  scope :paid, -> {where(paid: true)}
+
+  acts_as_paranoid
+
   def update_arrearage_status
     if self.arrearage.is_normal? and  self.number == self.arrearage.installment_number
       self.arrearage.update!(paid: true)
@@ -36,7 +41,9 @@ class Installment < ApplicationRecord
   def self.create_monthly_arrearages_installments(user, month, year)
     user.arrearages.monthly.each do |arrearage|
       self.find_or_create_by!(arrearage_id: arrearage.id, month: month, year: year) do |installment|
-        installment.value = arreage.get_installment_value
+        installment.value = arrearage.get_installment_value
+
+        installment.pay_at = arrearage.pay_at.strftime("#{year}-#{month.to_i - 1}-%d}").to_date
       end
     end
   end

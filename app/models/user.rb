@@ -6,17 +6,26 @@ class User < ApplicationRecord
 
     include Authenticatable
 
-    has_many :arrearages
-    has_many :receivers
-    has_many :monthly_incomes
+    has_many :arrearages, dependent: :destroy
+     has_many :installments, through: :arrearages
+    has_many :receivers, dependent: :destroy
+    has_many :monthly_incomes, dependent: :destroy
 
     mount_uploader :picture, AvatarUploader
 
-    delegate :build_all_months, to: :monthly_incomes
+
+    acts_as_paranoid
 
 
     def self.authentication_keys
       [:email]
     end
+
+
+  def build_all_months(value)
+    (0..11).each do |i|
+      self.monthly_incomes.create!(month: i, value: value)
+    end
+  end
 
 end

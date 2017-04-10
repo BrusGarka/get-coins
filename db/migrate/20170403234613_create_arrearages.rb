@@ -11,6 +11,7 @@ class CreateArrearages < ActiveRecord::Migration[5.0]
       t.integer :installment_number, null: false, default: 1
       t.boolean :paid, null:false, default: false
       t.datetime :pay_at, null:false
+      t.datetime :deleted_at, null: true
       t.timestamps
     end
   end

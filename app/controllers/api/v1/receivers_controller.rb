@@ -3,7 +3,7 @@ class Api::V1::ReceiversController < Api::V1::BaseController
   before_action :set_receiver, only: [:show,:update,:destroy]
 
   def index
-    params[:page] =|| 0
+    params[:page] ||= 0
     @receivers = @current_resource.receivers.page(params[:page])
   end
 
@@ -29,7 +29,7 @@ class Api::V1::ReceiversController < Api::V1::BaseController
   end
 
   def receiver_params
-    params.permit!(:category,:name,:document,:bank_code,:agency, :agency_dv, :account, :account_dv)
+    params.permit(:category,:name,:document,:bank_code,:agency, :agency_dv, :account, :account_dv)
   end
 end
 

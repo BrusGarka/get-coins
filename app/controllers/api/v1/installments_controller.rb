@@ -6,8 +6,8 @@ class Api::V1::InstallmentsController < Api::V1::BaseController
 
   def index
     params[:page] ||= 1
-    @current_resource.installments.filter(filter_params).page(params[:page])
-    laod_totalizer
+    @installments = @current_resource.installments.includes(:arrearage).where(year: params[:year], month: params[:month]).page(params[:page])
+    load_totalizer
 
   end
 
@@ -38,11 +38,11 @@ class Api::V1::InstallmentsController < Api::V1::BaseController
 
   def load_totalizer
     month_installments = @current_resource.installments.where(year: params[:year], month: params[:month])
-    @monthly_incomes = @current_resource.monthly_incomes.find_by(month: params[:month])
-    @paid _value = month_installments.paid.sum(:value)
+    @monthly_incomes = @current_resource.monthly_incomes.find_by(month: params[:month]).value
+    @paid_value = month_installments.paid.sum(:value)
     @pending_value = month_installments.pending.sum(:value)
     @total_value = month_installments.sum(:value)
-    @total_remaing = @monthly_incomes - @total_value -
+    @total_remaing = @monthly_incomes - @total_value
   end
 
 

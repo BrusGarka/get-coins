@@ -10,6 +10,7 @@ class CreateInstallments < ActiveRecord::Migration[5.0]
       t.decimal :value, null: false, precision: 10, scale: 2, default: 0.0
       t.datetime :pay_at, null: false
       t.datetime :paid_at, null: true
+      t.datetime :deleted_at, null: true
       t.timestamps
     end
   end
