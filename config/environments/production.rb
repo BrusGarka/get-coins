@@ -3,8 +3,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
    :address              => 'smtp.gmail.com',
    :port                 => 587,
-   :user_name            => 'leonardocoutinho@ioasys.com.br',
-   :password             => 'Dreamore',
+   :user_name            => ENV['GET_COINS_SMTP_USER_NAME'],
+   :password             => ENV['GET_COINS_SMTP_PASSWORD'],
    :domain               => 'gmail.com',
    :authentication       => 'plain',
    :enable_starttls_auto => true
