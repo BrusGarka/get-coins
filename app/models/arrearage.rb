@@ -19,14 +19,16 @@ class Arrearage < ApplicationRecord
   acts_as_paranoid
 
   def build_installments
+
     date = self.pay_at
 
     installment_value = self.get_installment_value
-
     (1..self.installment_number).each do |i|
-      current_month = (self.pay_at.month) - 1
+      byebug
+      current_month = date.month
       self.installments.create!(number: i, value: installment_value, pay_at: date, month: current_month, year: date.year)
       date = date + 1.month
+      
     end
   end
 

@@ -12,43 +12,40 @@
 
 ActiveRecord::Schema.define(version: 20170404223345) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "arrearages", force: :cascade do |t|
-    t.integer  "user_id",                                                     null: false
-    t.integer  "receiver_id",                                                 null: false
-    t.integer  "payment_type",                                default: 0,     null: false
-    t.integer  "category",                                    default: 0,     null: false
-    t.string   "title",                                       default: "",    null: false
-    t.text     "description",                                                 null: false
-    t.decimal  "total_value",        precision: 10, scale: 2, default: "1.0", null: false
-    t.integer  "installment_number",                          default: 1,     null: false
-    t.boolean  "paid",                                        default: false, null: false
-    t.datetime "pay_at",                                                      null: false
+  create_table "arrearages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",                                                                   null: false
+    t.integer  "receiver_id",                                                               null: false
+    t.integer  "payment_type",                                              default: 0,     null: false
+    t.integer  "category",                                                  default: 0,     null: false
+    t.string   "title",                                                     default: "",    null: false
+    t.text     "description",        limit: 65535,                                          null: false
+    t.decimal  "total_value",                      precision: 10, scale: 2, default: "1.0", null: false
+    t.integer  "installment_number",                                        default: 1,     null: false
+    t.boolean  "paid",                                                      default: false, null: false
+    t.datetime "pay_at",                                                                    null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                                  null: false
-    t.datetime "updated_at",                                                  null: false
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
     t.index ["receiver_id"], name: "index_arrearages_on_receiver_id", using: :btree
     t.index ["user_id"], name: "index_arrearages_on_user_id", using: :btree
   end
 
-  create_table "authentications", force: :cascade do |t|
+  create_table "authentications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "authable_type"
     t.integer  "authable_id"
-    t.string   "client",                 null: false
-    t.string   "encrypted_access_token", null: false
-    t.text     "metadata"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "client",                               null: false
+    t.string   "encrypted_access_token",               null: false
+    t.text     "metadata",               limit: 65535
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["authable_type", "authable_id"], name: "index_authentications_on_authable_type_and_authable_id", using: :btree
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
+  create_table "delayed_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "priority",                 default: 0, null: false
+    t.integer  "attempts",                 default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
@@ -59,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
-  create_table "installments", force: :cascade do |t|
+  create_table "installments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "arrearage_id",                                          null: false
     t.integer  "number",                                default: 1,     null: false
     t.integer  "month",                                                 null: false
@@ -75,17 +72,17 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.index ["arrearage_id"], name: "index_installments_on_arrearage_id", using: :btree
   end
 
-  create_table "monthly_incomes", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "month",                      null: false
-    t.decimal  "value",      default: "1.0", null: false
+  create_table "monthly_incomes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",                               null: false
+    t.integer  "month",                                 null: false
+    t.decimal  "value",      precision: 10, default: 1, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["user_id"], name: "index_monthly_incomes_on_user_id", using: :btree
   end
 
-  create_table "receivers", force: :cascade do |t|
+  create_table "receivers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",                null: false
     t.integer  "category",   default: 0, null: false
     t.string   "name"
@@ -101,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170404223345) do
     t.index ["user_id"], name: "index_receivers_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",      null: false
     t.string   "encrypted_password",     default: "",      null: false
     t.string   "full_name",              default: "",      null: false

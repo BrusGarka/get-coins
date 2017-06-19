@@ -1,10 +1,12 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password:
 
 production:
-  <<: *default
+  adapter: pg
+  encoding: utf8
   database: get_coins_production
   username: get_coins
   password: <%= ENV['GET_COINS_DATABASE_PASSWORD'] %>
@@ -13,12 +15,12 @@ development:
   <<: *default
   database: get_coins_development
   min_messages: warning
-  username: leonardo
+  username: root
   password:
 
 test:
   <<: *default
   database: get_coins_test
   min_messages: warning
-  username: leonardo
+  username: root
   password:
