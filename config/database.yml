@@ -1,26 +1,24 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8
-  username: root
-  password:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
 
 production:
-  adapter: pg
-  encoding: utf8
+  <<: *default
   database: get_coins_production
-  username: get_coins
-  password: <%= ENV['GET_COINS_DATABASE_PASSWORD'] %>
+  username: power30-backend
+  password: <%= ENV['GET-COINS-BACKEND_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
   database: get_coins_development
   min_messages: warning
-  username: root
-  password:
+  username: Leonardo
+  password: 
 
 test:
   <<: *default
   database: get_coins_test
   min_messages: warning
-  username: root
-  password:
+  username: Leonardo
+  password: 

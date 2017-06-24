@@ -130,13 +130,13 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mysql2 (0.4.6)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
     paranoia (2.2.1)
       activerecord (>= 4.0, < 5.1)
+    pg (0.21.0)
     public_suffix (2.0.5)
     puma (3.8.2)
     rack (2.0.1)
@@ -229,8 +229,8 @@ DEPENDENCIES
   koala
   listen (~> 3.0.5)
   mini_magick
-  mysql2
   paranoia
+  pg
   puma (~> 3.0)
   rails (~> 5.0.2)
   sass-rails (~> 5.0)
