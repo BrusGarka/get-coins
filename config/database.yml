@@ -6,7 +6,7 @@ default: &default
 production:
   <<: *default
   database: get_coins_production
-  username: power30-backend
+  username: <%= ENV['GET-COINS-BACKEND_DATABASE_USERNAME'] %>
   password: <%= ENV['GET-COINS-BACKEND_DATABASE_PASSWORD'] %>
 
 development:
