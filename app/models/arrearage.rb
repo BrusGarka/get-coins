@@ -24,7 +24,6 @@ class Arrearage < ApplicationRecord
 
     installment_value = self.get_installment_value
     (1..self.installment_number).each do |i|
-      byebug
       current_month = date.month
       self.installments.create!(number: i, value: installment_value, pay_at: date, month: current_month, year: date.year)
       date = date + 1.month
